@@ -1,0 +1,71 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content%}
+<div class="container" style="padding-top: 3%;">
+    <div class="section-content">
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <div class="heading-section text-center">
+                    <span class="subheading">
+                        Specialties
+                    </span>
+                    <h2>
+                        Our Menu
+                    </h2>
+                </div>  
+            </div>
+        </div>
+        
+
+        <div class="row">
+            {% for cake1 in styles%}
+                <div class="col-lg-12 heading-menu" style="padding-top: 2%">
+                    <h3 class="text-center mb-5">{{cake1.style}}</h3>
+                </div>
+                {% for cake in cakes%}
+                    {% if cake.style == cake1.style %}
+                        <div class="col-lg-6 menu-wrap">
+                            <div class="menus d-flex align-items-center">
+                                <div class="menu-img rounded-circle">
+                                    <img class="img-fluid" src="{{cake.image.url}}" alt="">
+                                </div>
+                                <div class="text-wrap">
+                                    <div class="row align-items-start">
+                                        <div class="col-8">
+                                            <h4>{{cake.name}}</h4>
+                                        </div>
+                                        <div class="col-4">
+                                            <h4 class="text-muted menu-price">Rs.{{cake.price}}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif%}
+                {%endfor%}
+            {%endfor%}
+        </div>
+   
+                
+        
+        
+        
+        
+        
+        
+        <div id="contact" style="padding-top: 5% ; text-align: center;"><p>*We undertake custom wedding, party orders</p></div>
+        <div style="text-align: center;"><a href="img/menu.jpeg" class="btn-primary mt-3" style="text-align: center;">View Full Menu</a></div>
+        <br>
+        <div class="heading-section text-center"><br>
+            <span class="subheading">
+                Contact Us
+            </span>
+            <h2><br>
+               Call :  <br>  <a href="tel:+919567077926" class="mb-5">  9567077926  </a><br>
+            </h2>
+            <h4> <a href="tel:+91 8301804340" class="mb-5"> 8301804340   </a></h4>
+            <h4>Email :  <br>  <a href="mailto:arbakescakes@gmail.com" class="mb-5" target="_blank"> arbakescakes@gmail.com </a></h4>
+        </div>
+    </div>
+</div>
+{%endblock%}

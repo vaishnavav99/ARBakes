@@ -1,0 +1,196 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content%}
+
+<div class="hero" id="home" style="padding-top: 5%;">
+    <div class="container">
+      <div class="row d-flex align-items-center">
+          <div class="col-lg-6 hero-left">
+              <h1 class="display-4 mb-5">Great Taste <br> In Every Bite!</h1>
+              <h4 class="display-4 mb-5" style="font-size:small;">#FALL_IN_LOVE_WITH_OUR_CAKES</h4>
+              <div class="mb-2">
+                  <a class="btn btn-primary btn-shadow btn-lg" href="menu" role="button">Explore Menu</a>
+                  <a class="btn btn-icon btn-lg" href="https://instagram.com/arbakescake?igshid=1nhztbbeu66lk" >
+                      <span class="lnr lnr-picture"></span>
+                      Gallery
+                  </a>
+              </div>
+             
+              <ul class="hero-info list-unstyled d-flex text-center mb-0">
+                  <li class="border-right">
+                      <span class="lnr lnr-home"></span>
+                      <h5>
+                          Home Made
+                      </h5>
+                  </li>
+                  <li class="border-right">
+                      <span class="lnr lnr-dinner"></span>
+                      <h5>
+                          Quality Food
+                      </h5>
+                  </li>
+                  <li class="">
+                      <span class="lnr lnr-heart"></span>
+                      <h5>
+                          Fresh & Tasty
+                      </h5>
+                  </li>
+              </ul>
+  
+          </div>
+          <div class="col-lg-6 hero-right">
+              <br>
+                      <img class="img-fluid" src="{% static 'img/hero-3.jpg'%}" alt="">
+          </div>
+      </div>
+    </div>
+  </div>		<!-- Welcome Section -->
+  <section id="gtco-welcome" class="bg-white section-padding">
+      <div class="container">
+          <div class="section-content">
+              <div class="row">
+                 
+                          
+              </div>
+          </div>
+      </div>
+  </section>
+  <!-- End of Welcome Section -->		<!-- Special Dishes Section -->
+  <section id="gtco-special-dishes" class="bg-grey section-padding">
+      <div class="container">
+          <div class="section-content">
+              <div class="heading-section text-center">
+                  <span class="subheading">
+                      Specialties
+                  </span>
+                  <h2>
+                      Special Cakes
+                  </h2>
+              </div>
+              {% for s in special %}
+                  {% if not s.id|divisibleby:"2" %}
+                      <div class="row mt-5">
+                          <div class="col-lg-5 col-md-6 align-self-center py-5">
+                              <h3 class="special-number">01.</h3>
+                              <div class="dishes-text">
+                                  <h4><span>{{s.name}}</span><br></h4>
+                                  <p class="pt-3">{{s.desc}}</p>
+                                  <h3 class="special-dishes-price">Rs. {{s.price}}</h3>
+                                  <a href="#contact" class="btn-primary mt-3">Order Now</a>
+                              </div>
+                          </div>
+                          <div class="col-lg-5 offset-lg-2 col-md-6 align-self-center mt-4 mt-md-0">
+                              <img src="{{s.image.url}}" alt="" class="img-fluid">
+                          </div>
+                      </div>
+                  {%else %}
+                      <div class="row mt-5">
+                          <div class="col-lg-5 col-md-6 align-self-center order-2 order-md-1 mt-4 mt-md-0">
+                              <img src="{{s.image.url}}" alt="" class="img-fluid " >
+                          </div>
+                          <div class="col-lg-5 offset-lg-2 col-md-6 align-self-center order-1 order-md-2 py-5">
+                              <h3 class="special-number">02.</h3>
+                              <div class="dishes-text">
+                                  <h4><span>{{s.name}}</span><br></h4>
+                                  <p class="pt-3"> {{s.desc}}</p>
+                                  <h3 class="special-dishes-price">{{s.price}}</h3>
+                                  <a href="#contact" class="btn-primary mt-3">Order Now <span><i class="fa fa-long-arrow-right"></i></span></a>
+                              </div>
+                          </div>
+                      </div>
+                  {% endif %}
+              {%endfor%}
+          </div>
+      </div>
+  </section>
+  <!-- End of Special Dishes Section -->		<!-- Menu Section -->
+  <section id="gtco-menu" class="section-padding">
+      <div class="container">
+          <div class="section-content">
+              <div class="row mb-5">
+                  <div class="col-md-12">
+                      <div class="heading-section text-center">
+                          <span class="subheading">
+                              Specialties
+                          </span>
+                          <h2>
+                              Our Menu
+                          </h2>
+                      </div>  
+                  </div>
+              </div>
+              
+              
+              
+              <div class="accordion" id="accordionmenu" >
+                  <div class="row text-center" >
+                      {% for cake1 in styles%}
+                          <div class="col-lg-12 menu-wrap">
+                          <div class="heading-menu" style="padding-bottom: 2%;">
+                              <button class="btn btn-link btn-primary mt-3 btn-shadow" type="button" data-toggle="collapse" data-target="#{{cake1.style}}" aria-expanded="false" aria-controls="{{cake1.style}}">
+                                  {{cake1.style}}
+                                  </button>         
+                              </div>
+  
+                              <div id="{{cake1.style}}" class="collapse" aria-labelledby="heading{{cake1.style}}" data-parent="#accordionmenu">
+                                  <div class="row">
+                                      {% for cake in cakes%}
+                                          {% if cake.style == cake1.style %}
+                                              <div class="col-lg-6 menu-wrap">
+                                                  <div class="menus d-flex align-items-center">
+                                                      <div class="menu-img rounded-circle">
+                                                          <img class="img-fluid" src="{{cake.image.url}}" alt="">
+                                                      </div>
+                                                      <div class="text-wrap">
+                                                          <div class="row align-items-start">
+                                                              <div class="col-8">
+                                                                  <h4>{{cake.name}}</h4>
+                                                              </div>
+                                                              <div class="col-4">
+                                                                  <h4 class="text-muted menu-price">Rs.{{cake.price}}</h4>
+                                                              </div>
+                                                          </div>
+                                                          
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          {% endif%}
+                                      {%endfor%}
+                                      
+                                  </div>
+                              
+                              </div>
+  
+                          
+                          {%endfor%}
+                      </div>
+                      
+                  </div>
+  
+  
+                      
+              
+              
+              
+              
+              
+              
+              <div id="contact" style="padding-top: 5%;"><p>*We undertake custom wedding, party orders</p></div>
+              <div style="text-align: center;"><a href="menu" class="btn-primary mt-3" style="text-align: center;">View Full Menu</a></div>
+              <br>
+              <div class="heading-section text-center"><br>
+                  <span class="subheading">
+                      Contact Us
+                  </span>
+                  <h2><br>
+                     Call :  <br>  <a href="tel:+919567077926" class="mb-5">  9567077926  </a><br>
+                  </h2>
+                  <h4> <a href="tel:+91 8301804340" class="mb-5"> 8301804340   </a></h4>
+                  <h4>Email :  <br>  <a href="mailto:arbakescakes@gmail.com" class="mb-5" target="_blank"> arbakescakes@gmail.com </a></h4>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  
+{% endblock %}
