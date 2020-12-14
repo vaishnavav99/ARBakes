@@ -7,6 +7,7 @@ class Cake(models.Model):
     style = models.CharField(max_length=50)
     price = models.IntegerField()
     image = models.ImageField(upload_to ='pics')
+    quantity = models.CharField(max_length=50,default=' ')
 
 class Special(models.Model):
 
